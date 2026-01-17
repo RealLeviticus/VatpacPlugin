@@ -58,29 +58,29 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Aircraft.cs" />
-    <Compile Include="Atc.cs" />
-    <Compile Include="AudioReconnect.cs" />
-    <Compile Include="Extending.cs" />
-    <Compile Include="Login.cs" />
-    <Compile Include="MenuInjector.cs" />
-    <Compile Include="MumbleStatusForm.cs">
+    <Compile Include="Core\Plugin.cs" />
+    <Compile Include="Core\Extending.cs" />
+    <Compile Include="Core\Login.cs" />
+    <Compile Include="Core\Settings.cs" />
+    <Compile Include="Core\SharedState.cs" />
+    <Compile Include="Models\Aircraft.cs" />
+    <Compile Include="Models\Atc.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\Sectors.cs" />
+    <Compile Include="Mumble\AudioReconnect.cs" />
+    <Compile Include="Mumble\MenuInjector.cs" />
+    <Compile Include="Components\MumbleStatusForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MumbleStatusForm.Designer.cs">
+    <Compile Include="Components\MumbleStatusForm.Designer.cs">
       <DependentUpon>MumbleStatusForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugin.cs" />
-    <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Sectors.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="SharedState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -111,7 +111,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MumbleStatusForm.resx">
+    <EmbeddedResource Include="Components\MumbleStatusForm.resx">
       <DependentUpon>MumbleStatusForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
