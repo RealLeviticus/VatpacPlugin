@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\OneDrive\Documents\vatSys Files\Profiles\Australia\Plugins\Vatpac\</OutputPath>
+    <OutputPath>..\..\vatSys Files\Profiles\Australia\Plugins\VatpacPlugin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -60,8 +60,16 @@
   <ItemGroup>
     <Compile Include="Aircraft.cs" />
     <Compile Include="Atc.cs" />
+    <Compile Include="AudioReconnect.cs" />
     <Compile Include="Extending.cs" />
     <Compile Include="Login.cs" />
+    <Compile Include="MenuInjector.cs" />
+    <Compile Include="MumbleStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MumbleStatusForm.Designer.cs">
+      <DependentUpon>MumbleStatusForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Plugin.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,8 +97,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="vatSys">
       <Private>false</Private>
@@ -99,6 +109,11 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MumbleStatusForm.resx">
+      <DependentUpon>MumbleStatusForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
