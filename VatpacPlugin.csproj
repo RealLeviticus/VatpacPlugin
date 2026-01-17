@@ -65,7 +65,7 @@
     <Compile Include="Login.cs" />
     <Compile Include="MenuInjector.cs" />
     <Compile Include="MumbleStatusForm.cs">
-      <SubType>designer</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MumbleStatusForm.Designer.cs">
       <DependentUpon>MumbleStatusForm.cs</DependentUpon>
