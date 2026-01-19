@@ -32,6 +32,7 @@ namespace VatpacPlugin
             catch (Exception ex)
             {
                 Errors.Add(ex, Plugin.DisplayName);
+                DiscordLogger.LogMumbleError("Error adding Mumble menu item", ex);
             }
         }
 
@@ -99,6 +100,7 @@ namespace VatpacPlugin
             catch (Exception ex)
             {
                 Errors.Add(new Exception($"Error updating menu colour: {ex.Message}"), Plugin.DisplayName);
+                DiscordLogger.LogMumbleError("Error updating Mumble menu colour", ex);
             }
         }
 

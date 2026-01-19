@@ -55,6 +55,7 @@ namespace VatpacPlugin
             catch (Exception ex)
             {
                 Errors.Add(ex, Plugin.DisplayName);
+                DiscordLogger.LogMumbleError("Failed to initialize Mumble audio reconnect", ex);
             }
         }
 
@@ -104,6 +105,7 @@ namespace VatpacPlugin
                 catch (Exception ex)
                 {
                     Errors.Add(ex, Plugin.DisplayName);
+                    DiscordLogger.LogMumbleError("Error showing Mumble reconnect prompt", ex);
                 }
                 finally
                 {
@@ -171,11 +173,13 @@ namespace VatpacPlugin
 
                 var errorMessage = $"Reconnect command sent but link did not come up within {ReconnectTimeoutSeconds} seconds.";
                 NotifyStatus(false);
+                DiscordLogger.LogMumbleError(errorMessage);
                 return new ReconnectResult { Success = false, ErrorMessage = errorMessage };
             }
             catch (Exception ex)
             {
                 Errors.Add(new Exception($"Failed to reconnect audio: {ex.Message}"), Plugin.DisplayName);
+                DiscordLogger.LogMumbleError("Failed to reconnect to Mumble audio", ex);
                 return new ReconnectResult { Success = false, ErrorMessage = ex.Message };
             }
         }
@@ -193,6 +197,7 @@ namespace VatpacPlugin
             catch (Exception ex)
             {
                 Errors.Add(new Exception($"Failed to disconnect audio: {ex.Message}"), Plugin.DisplayName);
+                DiscordLogger.LogMumbleError("Failed to disconnect Mumble audio", ex);
             }
             finally
             {
@@ -215,6 +220,7 @@ namespace VatpacPlugin
             catch (Exception ex)
             {
                 Errors.Add(new Exception($"Failed to check Mumble connection status: {ex.Message}"), Plugin.DisplayName);
+                DiscordLogger.LogMumbleError("Failed to check Mumble connection status", ex);
                 return false;
             }
         }
@@ -234,6 +240,7 @@ namespace VatpacPlugin
             catch (Exception ex)
             {
                 Errors.Add(new Exception($"Error notifying status change: {ex.Message}"), Plugin.DisplayName);
+                DiscordLogger.LogMumbleError("Error notifying Mumble status change", ex);
             }
         }
 
@@ -261,7 +268,9 @@ namespace VatpacPlugin
                 _pendingRetry = true;
                 _retryCount = 0;
                 _nextRetryUtc = DateTime.UtcNow.AddSeconds(AutoRetryIntervalSeconds);
-                Errors.Add(new Exception($"Connection to Mumble Lost. Reconnection attempt in {AutoRetryIntervalSeconds} seconds."), Plugin.DisplayName);
+                var errorMsg = $"Connection to Mumble Lost. Reconnection attempt in {AutoRetryIntervalSeconds} seconds.";
+                Errors.Add(new Exception(errorMsg), Plugin.DisplayName);
+                DiscordLogger.LogMumbleError(errorMsg);
                 NotifyStatus(false);
             }
 
@@ -285,6 +294,7 @@ namespace VatpacPlugin
                 _retryCount = 0;
                 _nextRetryUtc = DateTime.MinValue;
                 NotifyStatus(true);
+                DiscordLogger.LogMumbleReconnect($"Mumble auto-reconnection successful after {_retryCount} attempt(s)");
                 return;
             }
 
@@ -292,7 +302,9 @@ namespace VatpacPlugin
             {
                 _pendingRetry = false;
                 _nextRetryUtc = DateTime.MinValue;
-                Errors.Add(new Exception("Failed to reconnect to Mumble after multiple attempts. Please restart client."), Plugin.DisplayName);
+                var errorMsg = "Failed to reconnect to Mumble after multiple attempts. Please restart client.";
+                Errors.Add(new Exception(errorMsg), Plugin.DisplayName);
+                DiscordLogger.LogMumbleError(errorMsg);
             }
             else
             {

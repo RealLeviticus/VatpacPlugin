@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -58,6 +58,7 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\DiscordLogger.cs" />
     <Compile Include="Core\Plugin.cs" />
     <Compile Include="Core\Extending.cs" />
     <Compile Include="Core\Login.cs" />
@@ -69,7 +70,6 @@
     <Compile Include="Models\Sectors.cs" />
     <Compile Include="Mumble\AudioReconnect.cs" />
     <Compile Include="Mumble\MenuInjector.cs" />
-    <Compile Include="Mumble\MumbleStatusDisplay.cs" />
     <Compile Include="Components\MumbleStatusForm.cs">
       <SubType>designer</SubType>
     </Compile>
