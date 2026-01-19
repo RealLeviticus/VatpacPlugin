@@ -78,8 +78,17 @@ namespace VatpacPlugin
 
         private void UpdateStatus(bool connected)
         {
-            lblStatusValue.Text = connected ? "Connected" : "Disconnected";
-            lblStatusValue.ForeColor = connected ? _statusConnected : _statusDisconnected;
+            if (connected)
+            {
+                lblStatusValue.Text = "Connected";
+                lblStatusValue.ForeColor = _statusConnected;
+            }
+            else
+            {
+                // Show different message if not connected to VATSIM network
+                lblStatusValue.Text = !Network.IsConnected ? "Not connected to VATSIM" : "Disconnected";
+                lblStatusValue.ForeColor = _statusDisconnected;
+            }
 
             // Always allow manual control.
             btnReconnect.Enabled = true;

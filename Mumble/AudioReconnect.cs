@@ -239,6 +239,12 @@ namespace VatpacPlugin
 
         internal static void TickAutoReconnect()
         {
+            // Only check for disconnects when connected to the network
+            if (!Network.IsConnected)
+            {
+                return;
+            }
+
             var connected = IsMumbleConnected();
 
             if (connected)
